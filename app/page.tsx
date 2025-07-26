@@ -338,7 +338,7 @@ export default function HugoPitchLanding() {
                   <img
                     src="/images/03dee410-dedc-4a62-9c27-1afd9cb4ad5f.jpeg"
                     alt="Hugo WhatsApp Demo"
-                    className="max-w-lg w-full h-auto shadow-2xl rounded-[20px]"
+                    className="max-w-lg w-full h-auto rounded-[20px]"
                   />
 
       
@@ -409,7 +409,70 @@ export default function HugoPitchLanding() {
           </div>
         </div>
       </section>
+                    {/* Section: Evals is our Moat */}
+        <section className="min-h-screen flex items-center justify-center px-8 py-20 bg-[#0033A0] relative">
+          {/* Hugo Logo in top right */}
+          <div className="absolute top-8 right-8">
+            <img
+              src="/images/hugo-logo.svg"
+              alt="HUGO"
+              className="w-16 h-16"
+            />
+          </div>
 
+          <div className="max-w-6xl w-full text-center">
+            {/* Header */}
+            <h2 className="text-[32px] font-bold text-white mb-12">
+              "Evals is our Moat"
+            </h2>
+
+            {/* Bullet Points */}
+            <div className="mb-16 space-y-4">
+              <p className="text-xl text-white">
+                • Cada conversación es una oportunidad de aprender.
+              </p>
+              <p className="text-xl text-white">
+                • Cada corrección mejora a todos los HUGOs.
+              </p>
+            </div>
+
+            {/* Terminal/Process Window */}
+            <div className="bg-gray-900 rounded-[12px] p-8 mb-16 max-w-4xl mx-auto">
+              <div className="space-y-4 text-left">
+                <div className="flex items-center text-white">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs mr-4">1</span>
+                  <span>El cliente hace una pregunta</span>
+                </div>
+                <div className="flex items-center text-white">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs mr-4">2</span>
+                  <span>HUGO responde</span>
+                </div>
+                <div className="flex items-center text-white">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs mr-4">3</span>
+                  <span>Si no tiene info, consulta al dueño</span>
+                </div>
+                <div className="flex items-center text-white">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs mr-4">4</span>
+                  <span>El dueño corrige / enseña</span>
+                </div>
+                <div className="flex items-center text-white">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs mr-4">5</span>
+                  <span>HUGO memoriza y mejora</span>
+                </div>
+                <div className="flex items-center text-white">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs mr-4">6</span>
+                  <span>Ese conocimiento se vuelve parte del sistema</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Quote */}
+            <p className="text-[28px] font-normal text-white leading-relaxed">
+              "Cada empresa entrena a su HUGO.<br/>
+              <strong>Nosotros entrenamos al ecosistema.</strong>"
+            </p>
+          </div>
+        </section>
       {/* Section 5: Results */}
       <section id="results" className="min-h-screen flex items-center justify-center px-8 py-20 bg-white">
         <div className="max-w-5xl text-center">
@@ -430,10 +493,13 @@ export default function HugoPitchLanding() {
           </div>
           
         </div>
-      </section>
-      <section id="pricing" className="min-h-screen flex items-center justify-center px-8 py-20 bg-white">
-        <PricingPage /> 
-      </section>
+              </section>
+
+
+
+       <section id="pricing" className="min-h-screen flex items-center justify-center px-8 py-20 bg-white">
+         <PricingPage /> 
+       </section>
       {/* Section 6: Demo CTA */}
       <section id="demo" className="min-h-screen flex items-center justify-center px-8 py-20 bg-black">
         <div className="max-w-4xl text-center">
