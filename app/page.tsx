@@ -1,7 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
+import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card"
+import PricingPage from "@/components/pricing-plant"
 import {
   MessageCircle,
   Zap,
@@ -13,6 +14,7 @@ import {
   Bot,
   Edit3,
   ArrowDown,
+  Check,
 } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
@@ -41,6 +43,7 @@ const useInView = (threshold = 0.1) => {
   return [ref, isInView] as const
 }
 
+
 export default function HugoPitchLanding() {
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({
@@ -55,20 +58,20 @@ export default function HugoPitchLanding() {
 
   const getFeatureColors = (color: string) => {
     const colors = {
-      blue: "bg-gradient-to-br from-blue-900/30 to-blue-800/30 border-blue-500",
-      green: "bg-gradient-to-br from-green-900/30 to-green-800/30 border-green-500",
-      purple: "bg-gradient-to-br from-purple-900/30 to-purple-800/30 border-purple-500",
-      hugo: "bg-gradient-to-br from-[#0033A0]/30 to-[#0033A0]/20 border-[#0033A0]",
+      blue: "bg-gradient-to-br from-blue-900/50 to-blue-800/40 border-blue-500",
+      green: "bg-gradient-to-br from-green-900/50 to-green-800/40 border-green-500",
+      purple: "bg-gradient-to-br from-purple-900/50 to-purple-800/40 border-purple-500",
+      hugo: "bg-gradient-to-br from-orange-600/50 to-orange-500/40 border-orange-500",
     }
     return colors[color as keyof typeof colors]
   }
 
   const getIconColor = (color: string) => {
     const colors = {
-      blue: "text-blue-400",
-      green: "text-green-400",
-      purple: "text-purple-400",
-      hugo: "text-orange-400",
+      blue: "text-blue-300",
+      green: "text-green-300",
+      purple: "text-purple-300",
+      hugo: "text-orange-300",
     }
     return colors[color as keyof typeof colors]
   }
@@ -90,14 +93,14 @@ export default function HugoPitchLanding() {
 
     const colorClasses = {
       red: {
-        bg: "bg-gradient-to-br from-[#0033A0]/80 to-[#0033A0]/60 border-[#0033A0]",
-        icon: "text-white",
-        number: "text-white",
+        bg: "bg-white",
+        icon: "text-[#0033A0]",
+        number: "text-[#0033A0]",
       },
       yellow: {
-        bg: "bg-gradient-to-br from-yellow-600/60 to-yellow-500/40 border-yellow-500",
-        icon: "text-white",
-        number: "text-white",
+        bg: "bg-white",
+        icon: "text-yellow-500",
+        number: "text-yellow-500",
       },
     }
 
@@ -110,13 +113,13 @@ export default function HugoPitchLanding() {
           style={{ animationDelay: delay }}
         >
           <div className="relative">
-            <Icon className={`w-16 h-16 mx-auto mb-4 ${colorClasses[color].icon} drop-shadow-lg ${isInView ? "animate-float" : ""}`} />
+            <Icon className={`w-16 h-16 mx-auto mb-4 ${colorClasses[color].icon} ${isInView ? "animate-float" : ""}`} />
             {isInView && <div className="absolute -top-2 -right-2 w-4 h-4 bg-orange-500 rounded-full animate-ping" />}
           </div>
           <div className={`text-4xl font-black ${colorClasses[color].number} mb-2 drop-shadow-lg ${isInView ? "animate-counter" : ""}`}>
             {number}
           </div>
-          <p className="text-lg text-white font-semibold drop-shadow-lg">{text}</p>
+          <p className="text-lg text-gray-800 font-semibold">{text}</p>
         </Card>
       </div>
     )
@@ -124,10 +127,23 @@ export default function HugoPitchLanding() {
 
   return (
     <div className="">
+      {/* Section 1: Main Hero */}
+      <section id="hero" className="min-h-screen flex items-center justify-center px-8 bg-white">
+        <div className="text-center max-w-4xl">
+          <div className="mb-12">
+            <img
+              src="/images/hugo-logo-azul.svg"
+              alt="HUGO"
+              className="mx-auto mb-8 max-w-lg"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Fixed Navigation */}
       <nav className="fixed top-4 right-4 z-50 flex text-white flex-col gap-2  backdrop-blur-sm p-3 rounded-[12px] shadow-lg">
         <Button
-          onClick={() => scrollToSection("hook")}
+          onClick={() => scrollToSection("hero")}
           size="sm"
           className="bg-[#0033A0]/80 hover:bg-[#0033A0] backdrop-blur-sm rounded-[12px]"
         >
@@ -139,6 +155,13 @@ export default function HugoPitchLanding() {
           className="bg-[#0033A0]/80 hover:bg-[#0033A0] backdrop-blur-sm rounded-[12px]"
         >
           Problema
+        </Button>
+        <Button
+          onClick={() => scrollToSection("problema-actual")}
+          size="sm"
+          className="bg-[#0033A0]/80 hover:bg-[#0033A0] backdrop-blur-sm rounded-[12px]"
+        >
+          Problema Actual
         </Button>
         <Button
           onClick={() => scrollToSection("solution")}
@@ -169,7 +192,7 @@ export default function HugoPitchLanding() {
           Demo
         </Button>
       </nav>
-
+      
       {/* Section 1: Hook */}
       <section id="hook" className="min-h-screen flex items-center justify-center px-8 bg-[#0033A0]">
         <div className="text-center max-w-4xl">
@@ -183,7 +206,7 @@ export default function HugoPitchLanding() {
             ¿Quién cuida realmente a tus clientes cuando no estás?
           </p>
           <Button
-            onClick={() => scrollToSection("problem")}
+            onClick={() => scrollToSection("problema-actual")}
             className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-black transition-all rounded-[12px]"
           >
             <ArrowDown className="w-4 h-4 mr-2" />
@@ -191,19 +214,43 @@ export default function HugoPitchLanding() {
           </Button>
         </div>
       </section>
-      <section id="problema-actual" className="min-h-screen flex items-center justify-center px-8 bg-[#0033A0]">
+      <section id="problema-actual" className="min-h-screen flex items-center justify-center px-8 bg-white">
         <div className="text-center max-w-4xl">
 
-          <h1 className="text-2xl md:text-6xl font-bold mb-8 leading-tight text-white ">
+          <h1 id="problema-actual" className="text-2xl md:text-6xl font-bold mb-8 leading-tight  text-black ">
           Las herramientas de Customer Success prometen resultados increíbles. 
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-12">
+          {/* <p className="text-xl md:text-2xl text-gray-300 mb-12">
           Pero para un emprendedor no técnico, implementarlas es un infierno. Lo que empieza como un onboarding simple, termina siendo un callejón sin salida.
+          </p> */}
+        </div>
+      </section>
+      
+      {/* Section: Gap Explanation */}
+      <section className="min-h-screen flex items-center justify-center px-8 bg-[#0033A0]">
+        <div className="text-center max-w-5xl">
+          <div className="mb-12">
+            <img
+              src="/images/hugo-logo.svg"
+              alt="HUGO"
+              className="mx-auto mb-12 max-w-sm"
+            />
+          </div>
+          
+          <h2 className="text-[32px] font-bold mb-12 leading-tight text-white">
+            Existe un gap enorme entre el onboarding inicial y la<br/>
+            implementación real de herramientas de Customer Success.
+          </h2>
+          
+          <p className="text-[28px] font-normal text-white leading-relaxed">
+            👉 Esto deja a miles de negocios sin una solución efectiva para<br/>
+            cuidar a sus clientes.
           </p>
         </div>
       </section>
+      
       {/* Section 2: Problem */}
-      <section id="problem" className="min-h-screen flex items-center justify-center px-8 py-20 bg-white text-black">
+      <section id="problem" className="min-h-screen bg-[#DBDCDC]   flex items-center justify-center px-8 py-20 text-black">
         <div className="max-w-6xl w-full text-[#0033A0]">
                       <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-black">Metricas de Customer Success</h2>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -230,7 +277,7 @@ export default function HugoPitchLanding() {
             />
           </div>
           <div className="text-center">
-            <p className="text-xl text-black font-semibold mb-8">
+            <p className="text-xl text-gray-500 font-medium mb-8">
               Atención al cliente suele ser costosa, fragmentada y dependiente de humanos
             </p>
             <Button onClick={() => scrollToSection("solution")} className="bg-[#0033A0] hover:bg-[#0033A0]/90 rounded-[12px] text-white">
@@ -240,52 +287,8 @@ export default function HugoPitchLanding() {
           </div>
         </div>
       </section>
-
-      {/* Section 3: Solution */}
-      {/* <section id="solution" className="min-h-screen flex items-center justify-center px-8 py-20 bg-[#0033A0]">
-        <div className="max-w-5xl text-center">
-          <div className="mb-12">
-            <div ref={solutionRef}>
-              <img
-                src="/images/go-logo.png"
-                alt="GO - Customer Success Platform"
-                className={`mx-auto mb-8 max-w-sm md:max-w-md transition-all duration-1000 ${
-                  solutionInView ? "animate-scale-in opacity-100" : "opacity-0 scale-75"
-                }`}
-              />
-            </div>
-            <p className="text-2xl md:text-3xl text-gray-300 mb-8">El agente de Customer Success que lo hace todo</p>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 mb-12">
-            <div className="text-center">
-              <Zap className="w-16 h-16 mx-auto text-orange-500 mb-2" />
-              <p className="text-sm">Instalación en minutos</p>
-            </div>
-            <div className="text-4xl text-gray-500 hidden md:block">→</div>
-            <div className="text-center">
-              <MessageCircle className="w-16 h-16 mx-auto text-green-500 mb-2" />
-              <p className="text-sm">Interfaz ChatGPT</p>
-            </div>
-            <div className="text-4xl text-gray-500 hidden md:block">→</div>
-            <div className="text-center">
-              <CheckCircle className="w-16 h-16 mx-auto text-blue-500 mb-2" />
-              <p className="text-sm">Cuidado Total</p>
-            </div>
-          </div>
-
-          <p className="text-xl text-gray-300 mb-8">
-            Instalalo en minutos y empezá a cuidar a tus clientes desde el primer mensaje
-          </p>
-
-          <Button onClick={() => scrollToSection("features")} className="bg-[#0033A0] hover:bg-[#0033A0]/90 rounded-[12px]">
-            <ArrowDown className="w-4 h-4 mr-2" />
-            ¿Cómo funciona?
-          </Button>
-        </div>
-      </section> */}
-            <section id="solution" className="min-h-screen flex items-center justify-center px-8 bg-[#0033A0]">
-        <div className="text-center max-w-5xl">
+      <section id="solution" className="min-h-screen flex items-center justify-center px-8 bg-[#0033A0]">
+        <div className="text-center max-w-[80%]">
           <div className="mb-8  ">
             <img
               src="/images/hugo-logo.svg"
@@ -294,19 +297,59 @@ export default function HugoPitchLanding() {
             />
           </div>
           
-          <h1 className="text-4xl md:text-[32px] font-r mb-10 leading-tight text-white">
-            Por eso creamos  
-            <span className="font-black ml-2">HUGO</span>
-          </h1>
           
-          <p className="text-xl md:text-2xl font-bold text-white leading-relaxed">
+          
+          <p className="text-4xl font-semibold text-white leading-relaxed">
             "Una herramienta de Customer Success que no necesita implementación.<br/>
             Lo conectás en 2 minutos, y empieza a trabajar para vos"....
           </p>
         </div>
       </section>
+              {/* Section 3: Solution */}
+        <section id="solution" className="min-h-screen py-[4rem] flex items-center justify-center px-8 bg-white">
+          <div className="max-w-7xl w-full">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left side - Features */}
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <div className="bg-gray-50 p-6 rounded-[12px]">
+                    <p className="text-lg text-gray-800">
+                      "<strong>Aprende</strong> en tiempo real de cada conversación"
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-6 rounded-[12px]">
+                    <p className="text-lg text-gray-800">
+                      "Cada respuesta que da, deja <strong>trazabilidad</strong> (feedback implícito o explícito)"
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-6 rounded-[12px]">
+                    <p className="text-lg text-gray-800">
+                      "El dueño/cliente edita y afina su conocimiento directamente desde la <strong>memoria</strong>"
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+                            {/* Right side - Phone Image */}
+              <div className="relative flex justify-center">
+                <div className="relative">
+                  <img
+                    src="/images/03dee410-dedc-4a62-9c27-1afd9cb4ad5f.jpeg"
+                    alt="Hugo WhatsApp Demo"
+                    className="max-w-lg w-full h-auto shadow-2xl rounded-[20px]"
+                  />
+
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       {/* Section 4: Features */}
-      <section id="features" className="min-h-screen flex items-center justify-center px-8 py-20 bg-slate-800">
+      <section id="features" className="min-h-screen flex items-center justify-center px-8 py-20 bg-[#0033A0] text-white">
         <div className="max-w-6xl w-full">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">¿Cómo funciona HUGO?</h2>
           <div ref={featuresRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -352,14 +395,14 @@ export default function HugoPitchLanding() {
                     featuresInView ? "animate-bounce-slow" : ""
                   }`}
                 />
-                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                <p className="text-sm text-gray-300">{feature.desc}</p>
+                <h3 className="text-lg font-bold mb-2 text-white">{feature.title}</h3>
+                <p className="text-sm text-gray-200">{feature.desc}</p>
               </Card>
             ))}
           </div>
           <div className="text-center">
             <p className="text-xl text-gray-300 mb-8">Tu equipo no se satura, tus clientes no esperan</p>
-            <Button onClick={() => scrollToSection("results")} className="bg-[#0033A0] hover:bg-[#0033A0]/90 rounded-[12px]">
+            <Button onClick={() => scrollToSection("results")} className="bg-white text-[#0033A0] hover:bg-[#0033A0] hover:text-white rounded-[12px]">
               <ArrowDown className="w-4 h-4 mr-2" />
               Ver resultados
             </Button>
@@ -368,31 +411,29 @@ export default function HugoPitchLanding() {
       </section>
 
       {/* Section 5: Results */}
-      <section id="results" className="min-h-screen flex items-center justify-center px-8 py-20 bg-green-900">
+      <section id="results" className="min-h-screen flex items-center justify-center px-8 py-20 bg-white">
         <div className="max-w-5xl text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-16">Resultados Comprobados</h2>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-gradient-to-br from-green-900/40 to-green-800/40 rounded-[12px] p-8 border border-green-500 hover:scale-105 transition-transform">
-              <div className="text-5xl md:text-6xl font-bold text-green-400 mb-2">+47%</div>
+            <div className="bg-teal-50 rounded-[12px] p-8 border text-teal-900 border-teal-500 hover:scale-105 transition-transform">
+              <div className="text-5xl md:text-6xl font-bold text-teal-900  mb-2">+47%</div>
               <p className="text-xl">en engagement</p>
             </div>
-            <div className="bg-gradient-to-br from-blue-900/40 to-blue-800/40 rounded-[12px] p-8 border border-blue-500 hover:scale-105 transition-transform">
-              <div className="text-5xl md:text-6xl font-bold text-blue-400 mb-2">-30%</div>
+            <div className="bg-blue-50 rounded-[12px] p-8 border text-blue-900 border-blue-500 hover:scale-105 transition-transform">
+              <div className="text-5xl md:text-6xl font-bold text-blue-900 mb-2">-30%</div>
               <p className="text-xl">en tiempo de respuesta</p>
             </div>
-            <div className="bg-gradient-to-br from-[#0033A0]/40 to-[#0033A0]/30 rounded-[12px] p-8 border border-[#0033A0] hover:scale-105 transition-transform">
-              <div className="text-5xl md:text-6xl font-bold text-[#0033A0] mb-2">0</div>
+            <div className="bg-gray-50 rounded-[12px] p-8 border text-gray-900 border-gray-500 hover:scale-105 transition-transform">
+              <div className="text-5xl md:text-6xl font-bold text-gray-900 mb-2">0</div>
               <p className="text-xl">tickets sin responder</p>
             </div>
           </div>
-          <p className="text-lg text-gray-300 mb-8">*Resultados de pruebas iniciales con clientes beta</p>
-          <Button onClick={() => scrollToSection("demo")} className="bg-[#0033A0] hover:bg-[#0033A0]/90 rounded-[12px]">
-            <ArrowDown className="w-4 h-4 mr-2" />
-            Ver demo
-          </Button>
+          
         </div>
       </section>
-
+      <section id="pricing" className="min-h-screen flex items-center justify-center px-8 py-20 bg-white">
+        <PricingPage /> 
+      </section>
       {/* Section 6: Demo CTA */}
       <section id="demo" className="min-h-screen flex items-center justify-center px-8 py-20 bg-black">
         <div className="max-w-4xl text-center">
@@ -437,6 +478,7 @@ export default function HugoPitchLanding() {
           </div>
         </div>
       </section>
+      
     </div>
   )
 }
