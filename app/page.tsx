@@ -287,6 +287,24 @@ export default function HugoPitchLanding() {
           </div>
         </div>
       </section>
+      <section className="min-h-screen flex items-center justify-center px-8 py-20 bg-white">
+        <div className="max-w-4xl text-center">
+          <h2 className="text-[32px] font-bold text-gray-900 mb-16 leading-tight">
+            ¿Por qué este es el momento justo para lanzar <strong>HUGO</strong>?
+          </h2>
+          
+          <div className="mb-12">
+            <div className="text-[120px] md:text-[150px] font-black text-gray-900 leading-none mb-4">
+              89%
+            </div>
+            <p className="text-xl text-gray-700 leading-relaxed">
+              de las empresas planea automatizar soporte<br/>
+              al cliente en los próximos 12 meses
+            </p>
+            <img src="/images/logos.jpeg" alt="Market Timing" className="w-full h-auto" />
+          </div>
+        </div>
+      </section>
       <section id="solution" className="min-h-screen flex items-center justify-center px-8 bg-[#0033A0]">
         <div className="text-center max-w-[80%]">
           <div className="mb-8  ">
@@ -495,11 +513,15 @@ export default function HugoPitchLanding() {
         </div>
               </section>
 
-
+                  {/* Section: Market Timing */}
+    
 
        <section id="pricing" className="min-h-screen flex items-center justify-center px-8 py-20 bg-white">
          <PricingPage /> 
        </section>
+
+
+
       {/* Section 6: Demo CTA */}
       <section id="demo" className="min-h-screen flex items-center justify-center px-8 py-20 bg-black">
         <div className="max-w-4xl text-center">
